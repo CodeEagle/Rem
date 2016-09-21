@@ -1,9 +1,9 @@
 ![Rem](./Rem.png)
 
-#<font color='#B2D3FE'>R</font><font color='#8465B3'>e</font><font color='#655367'>m</font>
+<font color='#B2D3FE'>R</font><font color='#8465B3'>e</font><font color='#655367'>m</font>
 ---
 A maid helps you handle with launching Ads
-#Feature
+Feature
 ---
 - [x] Optional shows(1s) blank page when image not downloaded
 
@@ -11,11 +11,14 @@ A maid helps you handle with launching Ads
 
 - [x] Support customize trademark
 
+- [x] Show only once in app lifetime
+
+Screenshot
 ---
-#Screenshot
 ![RemWork](./RemWork.jpg)
+
+Usage
 ---
-#Usage
 ```swift
   import Rem
 // func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -24,7 +27,8 @@ A maid helps you handle with launching Ads
 // return true
 //}
 ```
-#Wiki
+Wiki
+---
 states For handling user event
 ```swift
   //Rem.Work.State
