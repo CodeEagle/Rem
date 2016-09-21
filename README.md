@@ -11,7 +11,7 @@ A maid helps you handle with launching Ads
 -[x] Support customize trademark
 
 #Screenshot
-![RemWork](./RemWork.png)
+![RemWork](./RemWork.jpg)
 #Usage
 ```swift
   import Rem
