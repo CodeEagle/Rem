@@ -26,13 +26,13 @@ final public class Rem {
             guard let sself = self else { return }
             sself.activeCount += 1
             if sself.activeCount == 1 { return }
-            sself.show()
+            sself.work()
         }
     }
     // MARK: - Public
-    public func show(advertisement item: Work) {
-        ad = item
-        show()
+    public func handle(work stuff: Work) {
+        ad = stuff
+        work()
     }
     
     public class func cleanHouse() {
@@ -54,7 +54,7 @@ final public class Rem {
     
     
     // MARK: - Private
-    private func show() {
+    private func work() {
         let url = ad.url
         var bg = image(for: url)
         var duration = ad.duration

@@ -40,7 +40,7 @@ extension AppDelegate {
                 Rem.cleanHouse()
             }
         }
-        Rem.shared.show(advertisement: ad)
+        Rem.shared.handle(work: ad)
     }
 }
 
