@@ -4,14 +4,17 @@
 ---
 A maid helps you handle with launching Ads
 #Feature
--[x] Optional shows(1s) blank page when image not downloaded
+---
+- [x] Optional shows(1s) blank page when image not downloaded
 
--[x] Support tapping the content, showing countdown info or skip button
+- [x] Support tapping the content, showing countdown info or skip button
 
--[x] Support customize trademark
+- [x] Support customize trademark
 
+---
 #Screenshot
 ![RemWork](./RemWork.jpg)
+---
 #Usage
 ```swift
   import Rem
