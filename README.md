@@ -27,6 +27,12 @@ Usage
 // return true
 //}
 ```
+install
+---
+###Carthage
+```
+github "CodeEagle/Rem"
+```
 Wiki
 ---
 states For handling user event
