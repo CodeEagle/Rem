@@ -13,6 +13,8 @@ Feature
 
 - [x] Show only once in app lifetime
 
+- [x] Support Gif
+
 Screenshot
 ---
 ![RemWork](./RemWork.jpg)
