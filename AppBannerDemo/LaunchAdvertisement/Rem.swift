@@ -11,7 +11,7 @@ import UIKit
 // MARK: - Rem
 final public class Rem {
     
-    public static var shared: Rem! = Rem()
+    internal static var shared: Rem! = Rem()
     static internal func gotAHappyEnding() { shared = nil }
     private var ad: Work!
     private var activeCount = 0
@@ -30,6 +30,11 @@ final public class Rem {
         }
     }
     // MARK: - Public
+    
+    public class func handle(work stuff: Work) {
+        Rem.shared.handle(work: stuff)
+    }
+    
     public func handle(work stuff: Work) {
         ad = stuff
         work()
@@ -51,7 +56,6 @@ final public class Rem {
             } catch { }
         }
     }
-    
     
     // MARK: - Private
     private func work() {
@@ -193,8 +197,6 @@ final public class Rem {
         })
     }
     
-    
-    
     // MARK: - Work
     public struct Work {
         public enum Extra {
@@ -254,7 +256,7 @@ final public class Rem {
 
 // MARK: - Extensions
 // MARK: NSData
-extension NSData {
+fileprivate extension NSData {
     var isGif: Bool {
         let b = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
         b.initialize(to: 1)
@@ -263,7 +265,7 @@ extension NSData {
     }
 }
 // MARK: UIView
-extension UIView {
+fileprivate extension UIView {
     
     func fadeOut() {
         let animations = {
@@ -282,7 +284,7 @@ import UIKit
 import ImageIO
 extension UIImageView {
     
-    public func load(data: NSData?) {
+    fileprivate func load(data: NSData?) {
         DispatchQueue.global().async {
             guard let d = data as? Data else { return }
             let image = data?.isGif == true ? UIImage.gif(data: d) : UIImage(data: d)
@@ -293,7 +295,7 @@ extension UIImageView {
 
 extension UIImage {
     
-    public class func gif(data: Data) -> UIImage? {
+    fileprivate class func gif(data: Data) -> UIImage? {
         // Create source from data
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
             print("SwiftGif: Source for the image does not exist")
