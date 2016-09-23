@@ -35,7 +35,7 @@ final public class Rem {
         Rem.shared.handle(work: stuff)
     }
     
-    public func handle(work stuff: Work) {
+    private func handle(work stuff: Work) {
         ad = stuff
         work()
     }
