@@ -25,7 +25,7 @@ Usage
   import Rem
 // func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     let ad = Rem.Work(...)// watch demo for detail
-    Rem.shared.show(advertisement: ad)
+    Rem.show(advertisement: ad)
 // return true
 //}
 ```
