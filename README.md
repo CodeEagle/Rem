@@ -1,8 +1,13 @@
-![Rem](./Rem.png)
+<p align="center">
+<img src="./Rem.png" width=425/>
+<br>
+Rem
+<br>
+<pre align="center">A maid helps you handle with launching Ads</pre>
+</p>
 
-<font color='#B2D3FE'>R</font><font color='#8465B3'>e</font><font color='#655367'>m</font>
----
-A maid helps you handle with launching Ads
+[![Swift](https://img.shields.io/badge/Swift-3.0-green.svg)](https://github.com/apple/swift) [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/CodeEagle/Rem/master/LICENSE) [![Build Status](https://travis-ci.org/CodeEagle/CacheLeaf.svg?branch=master)](https://travis-ci.org/CodeEagle/Rem)
+
 Feature
 ---
 - [x] Optional shows(1s) blank page when image not downloaded
@@ -17,7 +22,9 @@ Feature
 
 Screenshot
 ---
-![RemWork](./RemWork.jpg)
+<p align="center">
+<img src="./RemWork.jpg" width=320/>
+</p>
 
 Usage
 ---
@@ -42,3 +49,13 @@ states For handling user event
   //Rem.Work.State
   public enum State { case complete, idle, blank, tap, skip }
 ```
+Donations
+---
+<pre>
+<p align="center">
+<img src="https://raw.githubusercontent.com/CodeEagle/CacheLeaf/master/donate.jpg" width=320/>
+</p>
+</pre>
+License
+---
+Rem is released under the MIT license. See LICENSE for details.
