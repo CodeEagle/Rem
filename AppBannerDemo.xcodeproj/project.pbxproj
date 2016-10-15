@@ -14,7 +14,7 @@
 		166DCBB41D91220700711A04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 166DCBB21D91220700711A04 /* LaunchScreen.storyboard */; };
 		166DCBC91D91224800711A04 /* Rem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166DCBC01D91224700711A04 /* Rem.framework */; };
 		166DCBD01D91224800711A04 /* LaunchAdvertisementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166DCBCF1D91224800711A04 /* LaunchAdvertisementTests.swift */; };
-		166DCBD21D91224800711A04 /* LaunchAdvertisement.h in Headers */ = {isa = PBXBuildFile; fileRef = 166DCBC21D91224700711A04 /* LaunchAdvertisement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		166DCBD21D91224800711A04 /* Rem.h in Headers */ = {isa = PBXBuildFile; fileRef = 166DCBC21D91224700711A04 /* Rem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		166DCBD51D91224800711A04 /* Rem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166DCBC01D91224700711A04 /* Rem.framework */; };
 		166DCBD61D91224800711A04 /* Rem.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 166DCBC01D91224700711A04 /* Rem.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		166DCBDF1D9127E800711A04 /* Rem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166DCBDE1D9127E800711A04 /* Rem.swift */; };
@@ -67,7 +67,7 @@
 		166DCBB31D91220700711A04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		166DCBB51D91220700711A04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		166DCBC01D91224700711A04 /* Rem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Rem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		166DCBC21D91224700711A04 /* LaunchAdvertisement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchAdvertisement.h; sourceTree = "<group>"; };
+		166DCBC21D91224700711A04 /* Rem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rem.h; sourceTree = "<group>"; };
 		166DCBC31D91224700711A04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		166DCBC81D91224800711A04 /* LaunchAdvertisementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LaunchAdvertisementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		166DCBCF1D91224800711A04 /* LaunchAdvertisementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAdvertisementTests.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 		166DCBC11D91224700711A04 /* Rem */ = {
 			isa = PBXGroup;
 			children = (
-				166DCBC21D91224700711A04 /* LaunchAdvertisement.h */,
+				166DCBC21D91224700711A04 /* Rem.h */,
 				166DCBC31D91224700711A04 /* Info.plist */,
 				166DCBDE1D9127E800711A04 /* Rem.swift */,
 			);
@@ -162,7 +162,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				166DCBD21D91224800711A04 /* LaunchAdvertisement.h in Headers */,
+				166DCBD21D91224800711A04 /* Rem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

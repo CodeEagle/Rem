@@ -84,7 +84,7 @@ final public class Rem {
         bg.contentMode = ad.contentMode
         if let over = ad.image { bg.addSubview(over) }
         if !showingBlank {
-            if case Work.Extra.countdown(let postion) = ad.enableCountdown {
+            if case Work.Extra.position(let postion) = ad.enableCountdown {
                 let rect = postion.rect.insetBy(dx: 0, dy: 6)
                 let label = CATextLayer()
                 label.frame = rect
@@ -100,7 +100,7 @@ final public class Rem {
                 totalTime = ad.duration
                 count()
             }
-            if case Work.Extra.skip(let postion) = ad.enableSkip {
+            if case Work.Extra.position(let postion) = ad.enableSkip {
                 let rect = postion.rect
                 let label = UIButton(frame: rect)
                 label.backgroundColor = UIColor(white: 1, alpha: 0.9)
@@ -199,35 +199,34 @@ final public class Rem {
     
     // MARK: - Work
     public struct Work {
-        public enum Extra {
-            public enum Position {
-                case topLeft, topRight, bottomLeft, bottomRight
-                var rect: CGRect {
-                    let size = UIScreen.main.bounds.size
-                    var x: CGFloat = 0
-                    var y = x, width = x, height = x
-                    width = 50
-                    height = 35
-                    switch self {
-                    case .topLeft:
-                        x = 10
-                        y = 10
-                    case .topRight:
-                        x = size.width - width - 10
-                        y = 10
-                    case .bottomRight:
-                        x = size.width - width - 10
-                        y = size.height - height - 10
-                    case .bottomLeft:
-                        x = 10
-                        y = size.height - height - 10
-                    }
-                    return CGRect(x: x, y: y, width: width, height: height)
+        public enum Position {
+            case topLeft, topRight, bottomLeft, bottomRight
+            var rect: CGRect {
+                let size = UIScreen.main.bounds.size
+                var x: CGFloat = 0
+                var y = x, width = x, height = x
+                width = 50
+                height = 35
+                switch self {
+                case .topLeft:
+                    x = 10
+                    y = 10
+                case .topRight:
+                    x = size.width - width - 10
+                    y = 10
+                case .bottomRight:
+                    x = size.width - width - 10
+                    y = size.height - height - 10
+                case .bottomLeft:
+                    x = 10
+                    y = size.height - height - 10
                 }
+                return CGRect(x: x, y: y, width: width, height: height)
             }
+        }
+        public enum Extra {
             case none
-            case countdown(Position)
-            case skip(Position)
+            case position(Position)
         }
         public enum State { case complete, idle, blank, tap, skip }
         fileprivate let url: String
