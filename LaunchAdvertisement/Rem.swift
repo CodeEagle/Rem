@@ -83,6 +83,17 @@ final public class Rem {
         bg.frame = UIScreen.main.bounds
         bg.contentMode = ad.contentMode
         if let over = ad.image { bg.addSubview(over) }
+        let done = {[weak self] in
+            guard let sself = self else { return }
+            bg.fadeOut()
+            if sself.showingBlank {
+                sself.showingBlank = false
+                sself.ad.complete?(.blank)
+                return
+            }
+            if sself.activeCount < sself.activeAfterInit { sself.ad.complete?(.complete) }
+            Rem.gotAHappyEnding()
+        }
         if !showingBlank {
             if case Work.Extra.position(let postion) = ad.enableCountdown {
                 let rect = postion.rect.insetBy(dx: 0, dy: 6)
@@ -98,7 +109,7 @@ final public class Rem {
                 bg.layer.addSublayer(label)
                 countdownLabel = label
                 totalTime = ad.duration
-                count()
+                count(done: done)
             }
             if case Work.Extra.position(let postion) = ad.enableSkip {
                 let rect = postion.rect
@@ -120,18 +131,6 @@ final public class Rem {
             }
         }
         topVC.view.addSubview(bg)
-        let dispatchTime: DispatchTime = DispatchTime.now() + .seconds(duration)
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {[weak self] in
-            guard let sself = self else { return }
-            bg.fadeOut()
-            if sself.showingBlank {
-                sself.showingBlank = false
-                sself.ad.complete?(.blank)
-                return
-            }
-            if sself.activeCount < sself.activeAfterInit { sself.ad.complete?(.complete) }
-            Rem.gotAHappyEnding()
-        })
         if ad.enableTap {
             let tap = UITapGestureRecognizer(target: self, action: #selector(Rem.tap(gesture:)))
             bg.isUserInteractionEnabled = true
@@ -185,15 +184,18 @@ final public class Rem {
         return topController!
     }
     
-    private func count() {
-        if totalTime <= 0 { return }
+    private func count(done: @escaping () -> ()) {
+        if totalTime < 0 {
+            done()
+            return
+        }
         countdownLabel?.string = "\(totalTime)"
         let dispatchTime: DispatchTime = DispatchTime.now() + .seconds(1)
         DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {[weak self] in
             guard let sself = self else { return }
             sself.totalTime -= 1
-            sself.count()
             sself.countdownLabel?.string = "\(sself.totalTime)"
+            sself.count(done: done)
         })
     }
     
