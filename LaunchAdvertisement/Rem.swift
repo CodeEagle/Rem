@@ -129,6 +129,11 @@ final public class Rem {
                 bg.addSubview(label)
                 skipButton = label
             }
+        } else {
+            let time = DispatchTime.now() + DispatchTimeInterval.seconds(ad.duration)
+            DispatchQueue.main.asyncAfter(deadline: time, execute: {
+                done()
+            })
         }
         topVC.view.addSubview(bg)
         if ad.enableTap {
@@ -345,7 +350,7 @@ extension UIImage {
         var rest: Int
         while true {
             rest = a! % b!
-            if rest == 0 { return b! }// Found it  
+            if rest == 0 { return b! }// Found it
             else {
                 a = b
                 b = rest
