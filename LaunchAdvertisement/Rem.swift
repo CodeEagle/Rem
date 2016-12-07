@@ -12,7 +12,9 @@ import UIKit
 final public class Rem {
     
     internal static var shared: Rem! = Rem()
-    static internal func gotAHappyEnding() { shared = nil }
+    static internal func gotAHappyEnding() {
+        shared = nil
+    }
     private var ad: Work!
     private var activeCount = 0
     private var showingBlank = false
@@ -20,6 +22,8 @@ final public class Rem {
     private weak var skipButton: UIButton?
     private var totalTime = 0
     internal let activeAfterInit = 2
+    
+    
     deinit { NotificationCenter.default.removeObserver(self) }
     private init() {
         NotificationCenter.default.addObserver(forName: .UIApplicationDidBecomeActive, object: nil, queue: OperationQueue.main) {[weak self] (_) in
@@ -28,6 +32,7 @@ final public class Rem {
             if sself.activeCount == 1 { return }
             sself.work()
         }
+        
     }
     // MARK: - Public
     
@@ -76,7 +81,10 @@ final public class Rem {
     }
     
     private func processToShow(image: NSData?, duration: Int) {
-        let topVC = topMostViewController
+        var _win: UIWindow! = UIWindow(frame: UIScreen.main.bounds)
+        _win.rootViewController = UIViewController()
+        _win.windowLevel = UIWindowLevelStatusBar + 1
+        _win.isHidden = false
         let bg = UIImageView()
         bg.load(data: image)
         bg.backgroundColor = UIColor.white
@@ -85,14 +93,19 @@ final public class Rem {
         if let over = ad.image { bg.addSubview(over) }
         let done = {[weak self] in
             guard let sself = self else { return }
-            bg.fadeOut()
             if sself.showingBlank {
                 sself.showingBlank = false
                 sself.ad.complete?(.blank)
+                _win.fadeOut(done: {
+                    _win = nil
+                })
                 return
             }
             if sself.activeCount < sself.activeAfterInit { sself.ad.complete?(.complete) }
-            Rem.gotAHappyEnding()
+            _win.fadeOut(done: {
+                Rem.gotAHappyEnding()
+                _win = nil
+            })
         }
         if !showingBlank {
             if case Work.Extra.position(let postion) = ad.enableCountdown {
@@ -135,7 +148,7 @@ final public class Rem {
                 done()
             })
         }
-        topVC.view.addSubview(bg)
+        _win.addSubview(bg)
         if ad.enableTap {
             let tap = UITapGestureRecognizer(target: self, action: #selector(Rem.tap(gesture:)))
             bg.isUserInteractionEnabled = true
@@ -179,14 +192,6 @@ final public class Rem {
                 try data.write(to: aurl)
             } catch { print("😠 \(error)")}
         }
-    }
-    
-    private var topMostViewController: UIViewController {
-        var root = UIApplication.shared.windows.first?.rootViewController
-        while(root == nil) { root = UIApplication.shared.windows.first?.rootViewController }
-        var topController: UIViewController? = root
-        while (topController?.presentedViewController != nil) { topController = topController?.presentedViewController }
-        return topController!
     }
     
     private func count(done: @escaping () -> ()) {
@@ -273,14 +278,17 @@ fileprivate extension NSData {
 // MARK: UIView
 fileprivate extension UIView {
     
-    func fadeOut() {
+    func fadeOut( done:  (() -> Void)? = nil) {
         let animations = {
             self.layer.opacity = 0
             self.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1.2)
         }
         UIView.animate(withDuration: 0.2,
                        animations: animations,
-                       completion: {[weak self] (_) in self?.removeFromSuperview() })
+                       completion: {[weak self] (_) in
+                        done?()
+                        self?.removeFromSuperview()
+        })
     }
 }
 // MARK: - Gif
