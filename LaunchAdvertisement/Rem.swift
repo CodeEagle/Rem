@@ -20,6 +20,7 @@ final public class Rem {
     private weak var skipButton: UIButton?
     private var totalTime = 0
     internal let activeAfterInit = 2
+    private lazy var showing = false
     
     
     deinit { NotificationCenter.default.removeObserver(self) }
@@ -27,7 +28,7 @@ final public class Rem {
         NotificationCenter.default.addObserver(forName: .UIApplicationDidBecomeActive, object: nil, queue: OperationQueue.main) {[weak self] (_) in
             guard let sself = self else { return }
             sself.activeCount += 1
-            if sself.activeCount == 1 { return }
+            if sself.activeCount == 1 || sself.showing { return }
             sself.work()
         }
         
@@ -79,6 +80,7 @@ final public class Rem {
     }
     
     private func processToShow(image: NSData?, duration: Int) {
+        showing = true
         var _win: UIWindow! = UIWindow(frame: UIScreen.main.bounds)
         _win.rootViewController = UIViewController()
         _win.windowLevel = UIWindowLevelStatusBar + 2
@@ -94,11 +96,15 @@ final public class Rem {
             if sself.showingBlank {
                 sself.showingBlank = false
                 sself.ad.complete?(.blank)
-                _win.fadeOut(done: { _win = nil })
+                _win.fadeOut(done: {[weak self] in
+                    self?.showing = false
+                    _win = nil
+                })
                 return
             }
             if sself.activeCount < sself.activeAfterInit { sself.ad.complete?(.complete) }
-            _win.fadeOut(done: {
+            _win.fadeOut(done: {[weak self] in
+                self?.showing = false
                 _win = nil
                 Rem.gotAHappyEnding()
             })
