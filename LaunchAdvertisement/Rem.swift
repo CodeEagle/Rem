@@ -124,8 +124,8 @@ final public class Rem {
                 bg.layer.addSublayer(label)
                 countdownLabel = label
                 totalTime = ad.duration
-                count(done: done)
             }
+            count(done: done)
             if case Work.Extra.position(let postion) = ad.enableSkip {
                 let rect = postion.rect
                 let label = UIButton(frame: rect)
