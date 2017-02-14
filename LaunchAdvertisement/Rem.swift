@@ -123,8 +123,8 @@ final public class Rem {
                 label.masksToBounds = true
                 bg.layer.addSublayer(label)
                 countdownLabel = label
-                totalTime = ad.duration
             }
+            totalTime = ad.duration
             count(done: done)
             if case Work.Extra.position(let postion) = ad.enableSkip {
                 let rect = postion.rect
